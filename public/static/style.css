@@ -172,7 +172,6 @@ legend {
 
 .radio-group__wrapper.selected {
   background: var(--bg-selected);
-  color: #fff;
 }
 
 .radio-group__wrapper span {

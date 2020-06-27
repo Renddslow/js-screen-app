@@ -39,7 +39,7 @@
                         <legend><%= tool %></legend>
                         <% for (const question of questions) { %>
                         <label class="radio-group__wrapper" for="<%= question.id %>--<%= tool %>">
-                            <input type="radio" name="<%= tool %>" id="<%= question.id %>--<%= tool %>" />
+                            <input type="radio" name="<%= tool %>" id="<%= question.id %>--<%= tool %>" value="<%= question.id %>" />
                             <span><%= question.label %></span>
                         </label>
                         <% } %>
@@ -80,5 +80,6 @@
             });
           })();
         </script>
+        <script src="/static/main.js"></script>
     </body>
 </html>
