@@ -14,6 +14,6 @@
   "paths": {
     "*": ["node_modules/*"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/server/*"],
   "exclude": ["node_modules"]
 }

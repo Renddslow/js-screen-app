@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <title>5 Minute JS Screening for <%= company %></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/lib/codemirror.css">
+        <script src="/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="/theme/darcula.css">
+        <script src="/javascript.js"></script>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="header__content">
+                    <h1><a href="/" target="_blank">5 Minute JS Screen</a></h1>
+                    <span>For <span class="tag"><%= company %></span></span>
+                </div>
+            </header>
+            <form class="screening-form" id="screening" data-id="<%= id %>">
+                <% if (preamble) { %>
+                    <p><%- preamble %></p>
+                <% } else { %>
+                    <p>This is one of the first steps in our interview process. Since we're pretty invested in JS and the surrounding ecosystem, we wanted to see how familiar you are with the landscape before we get started.</p>
+                <% } %>
+                    <p><strong>This shouldn't take much more than 5 minutes.</strong></p>
+                <% if (expectations) { %>
+                    <h2>Expectations</h2>
+                    <p><%- expectations %></p>
+                    <p class="expectation-out"><strong>If this seems to match your expectations of the role, proceed. If not, feel free to opt out of the screening.</strong></p>
+                    <button type="button" id="opt-out" class="btn btn--danger">Opt Out</button>
+                    <div class="confirmation">
+                        <p><strong>Are you sure you want to opt out?</strong></p>
+                        <div class="confirmation__row">
+                            <button type="button" class="btn btn--danger" id="confirm">Yes</button>
+                            <button type="button" class="btn btn--link" id="cancel">Whoops! Wrong Button</button>
+                        </div>
+                    </div>
+                <% } %>
+
+                <h2>Tools</h2>
+                <p>These are a few of the tools we use. Let us know how familiar you are with each of them (P.S. If you leave one blank, we'll assume you haven't heard of it, no biggie).</p>
+                <% for (const tool of tools) { %>
+                    <fieldset class="radio-group">
+                        <legend><%= tool %></legend>
+                        <% for (const question of questions) { %>
+                        <label class="radio-group__wrapper" for="<%= question.id %>--<%= tool %>">
+                            <input type="radio" name="<%= tool %>" id="<%= question.id %>--<%= tool %>" />
+                            <span><%= question.label %></span>
+                        </label>
+                        <% } %>
+                    </fieldset>
+                <% } %>
+                <% if (longForms.length) { %>
+                    <h2>Additional Questions</h2>
+                    <p>We have just <%= longForms.length %> more question<% if (longForms.length > 1) { %>s<% } %> where we'd like to get a feel for how well you understand a concept or two. We think it's best for you to show us, rather than try to describe it. If you're not sure what it is, feel free to leave it blank.</p>
+                    <% for (const longForm of longForms) { %>
+                        <div class="form-control">
+                            <label for="<%= longForm.id %>"><%- longForm.question %></label>
+                            <textarea id="<%= longForm.id %>"></textarea>
+                        </div>
+                    <% } %>
+                <% } %>
+                <button class="btn btn--primary" type="submit">Submit</button>
+            </form>
+        </main>
+        <script>
+          (() => {
+            document.querySelectorAll('textarea').forEach((t) => {
+              CodeMirror.fromTextArea(t, {
+                lineNumbers: true,
+                mode: 'javascript',
+                theme: 'darcula',
+                tabSize: 2,
+              });
+            });
+          })();
+        </script>
+    </body>
+</html>

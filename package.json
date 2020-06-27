@@ -7,7 +7,13 @@
   "license": "MIT",
   "author": "Matt McElwee <mubatt@wyopub.com>",
   "main": "src/index.js",
-  "scripts": {},
+  "scripts": {
+    "prestart": "tsc",
+    "server:watch": "nodemon dist/index.js",
+    "client": "serve public",
+    "build:watch": "tsc -w",
+    "start": "run-p build:watch server:watch client"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -40,8 +46,19 @@
     "ava": "^3.9.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5",
+    "nodemon": "^2.0.4",
+    "npm-run-all": "^4.1.5",
+    "serve": "^11.3.2",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dot-prop": "^5.2.0",
+    "ejs": "^3.1.3",
+    "prettier": "^2.0.5",
+    "polka": "^0.5.2",
+    "snarkdown": "^1.2.2"
   }
 }

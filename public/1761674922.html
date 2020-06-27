@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>5 Minute JS Screening for DMSi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/lib/codemirror.css" />
+    <script src="/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="/theme/darcula.css" />
+    <script src="/javascript.js"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="header__content">
+          <h1><a href="/" target="_blank">5 Minute JS Screen</a></h1>
+          <span>For <span class="tag">DMSi</span></span>
+        </div>
+      </header>
+      <form class="screening-form" id="screening" data-id="1761674922">
+        <p>
+          This is one of the first steps in our interview process. Since we're
+          pretty invested in JS and the surrounding ecosystem, we wanted to see
+          how familiar you are with the landscape before we get started.
+        </p>
+
+        <p><strong>This shouldn't take much more than 5 minutes.</strong></p>
+
+        <h2>Expectations</h2>
+        <p>
+          Our expectation from this role is that you will provide technical
+          leadership to our web development teams, architect and build robust
+          web applications, and keep ahead of the curve on web APIs and
+          standards. This is also a frontend JavaScript job, so there is an
+          expecation that you have considerable previous experience with
+          frontend UI frameworks or libraries.
+        </p>
+        <p class="expectation-out">
+          <strong
+            >If this seems to match your expectations of the role, proceed. If
+            not, feel free to opt out of the screening.</strong
+          >
+        </p>
+        <button type="button" id="opt-out" class="btn btn--danger">
+          Opt Out
+        </button>
+        <div class="confirmation">
+          <p><strong>Are you sure you want to opt out?</strong></p>
+          <div class="confirmation__row">
+            <button type="button" class="btn btn--danger" id="confirm">
+              Yes
+            </button>
+            <button type="button" class="btn btn--link" id="cancel">
+              Whoops! Wrong Button
+            </button>
+          </div>
+        </div>
+
+        <h2>Tools</h2>
+        <p>
+          These are a few of the tools we use. Let us know how familiar you are
+          with each of them (P.S. If you leave one blank, we'll assume you
+          haven't heard of it, no biggie).
+        </p>
+
+        <fieldset class="radio-group">
+          <legend>React</legend>
+
+          <label class="radio-group__wrapper" for="0--React">
+            <input type="radio" name="React" id="0--React" />
+            <span>Never heard of it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="1--React">
+            <input type="radio" name="React" id="1--React" />
+            <span>Heard of it, never used it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="2--React">
+            <input type="radio" name="React" id="2--React" />
+            <span>Used it for personal projects</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="3--React">
+            <input type="radio" name="React" id="3--React" />
+            <span>Used it at work</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="radio-group">
+          <legend>Redux</legend>
+
+          <label class="radio-group__wrapper" for="0--Redux">
+            <input type="radio" name="Redux" id="0--Redux" />
+            <span>Never heard of it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="1--Redux">
+            <input type="radio" name="Redux" id="1--Redux" />
+            <span>Heard of it, never used it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="2--Redux">
+            <input type="radio" name="Redux" id="2--Redux" />
+            <span>Used it for personal projects</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="3--Redux">
+            <input type="radio" name="Redux" id="3--Redux" />
+            <span>Used it at work</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="radio-group">
+          <legend>Svelte</legend>
+
+          <label class="radio-group__wrapper" for="0--Svelte">
+            <input type="radio" name="Svelte" id="0--Svelte" />
+            <span>Never heard of it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="1--Svelte">
+            <input type="radio" name="Svelte" id="1--Svelte" />
+            <span>Heard of it, never used it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="2--Svelte">
+            <input type="radio" name="Svelte" id="2--Svelte" />
+            <span>Used it for personal projects</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="3--Svelte">
+            <input type="radio" name="Svelte" id="3--Svelte" />
+            <span>Used it at work</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="radio-group">
+          <legend>Golang</legend>
+
+          <label class="radio-group__wrapper" for="0--Golang">
+            <input type="radio" name="Golang" id="0--Golang" />
+            <span>Never heard of it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="1--Golang">
+            <input type="radio" name="Golang" id="1--Golang" />
+            <span>Heard of it, never used it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="2--Golang">
+            <input type="radio" name="Golang" id="2--Golang" />
+            <span>Used it for personal projects</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="3--Golang">
+            <input type="radio" name="Golang" id="3--Golang" />
+            <span>Used it at work</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="radio-group">
+          <legend>Node.js</legend>
+
+          <label class="radio-group__wrapper" for="0--Node.js">
+            <input type="radio" name="Node.js" id="0--Node.js" />
+            <span>Never heard of it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="1--Node.js">
+            <input type="radio" name="Node.js" id="1--Node.js" />
+            <span>Heard of it, never used it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="2--Node.js">
+            <input type="radio" name="Node.js" id="2--Node.js" />
+            <span>Used it for personal projects</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="3--Node.js">
+            <input type="radio" name="Node.js" id="3--Node.js" />
+            <span>Used it at work</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="radio-group">
+          <legend>CSS</legend>
+
+          <label class="radio-group__wrapper" for="0--CSS">
+            <input type="radio" name="CSS" id="0--CSS" />
+            <span>Never heard of it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="1--CSS">
+            <input type="radio" name="CSS" id="1--CSS" />
+            <span>Heard of it, never used it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="2--CSS">
+            <input type="radio" name="CSS" id="2--CSS" />
+            <span>Used it for personal projects</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="3--CSS">
+            <input type="radio" name="CSS" id="3--CSS" />
+            <span>Used it at work</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="radio-group">
+          <legend>Styled-Components</legend>
+
+          <label class="radio-group__wrapper" for="0--Styled-Components">
+            <input
+              type="radio"
+              name="Styled-Components"
+              id="0--Styled-Components"
+            />
+            <span>Never heard of it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="1--Styled-Components">
+            <input
+              type="radio"
+              name="Styled-Components"
+              id="1--Styled-Components"
+            />
+            <span>Heard of it, never used it</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="2--Styled-Components">
+            <input
+              type="radio"
+              name="Styled-Components"
+              id="2--Styled-Components"
+            />
+            <span>Used it for personal projects</span>
+          </label>
+
+          <label class="radio-group__wrapper" for="3--Styled-Components">
+            <input
+              type="radio"
+              name="Styled-Components"
+              id="3--Styled-Components"
+            />
+            <span>Used it at work</span>
+          </label>
+        </fieldset>
+
+        <h2>Additional Questions</h2>
+        <p>
+          We have just 1 more question where we'd like to get a feel for how
+          well you understand a concept or two. We think it's best for you to
+          show us, rather than try to describe it. If you're not sure what it
+          is, feel free to leave it blank.
+        </p>
+
+        <div class="form-control">
+          <label for="2418807062"
+            >Write a small example of the use of a <code>closure</code>.</label
+          >
+          <textarea id="2418807062"></textarea>
+        </div>
+
+        <button class="btn btn--primary" type="submit">Submit</button>
+      </form>
+    </main>
+    <script>
+      (() => {
+        document.querySelectorAll("textarea").forEach((t) => {
+          CodeMirror.fromTextArea(t, {
+            lineNumbers: true,
+            mode: "javascript",
+            theme: "darcula",
+            tabSize: 2,
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
