@@ -30,13 +30,6 @@
                     <p><%- expectations %></p>
                     <p class="expectation-out"><strong>If this seems to match your expectations of the role, proceed. If not, feel free to opt out of the screening.</strong></p>
                     <button type="button" id="opt-out" class="btn btn--danger">Opt Out</button>
-                    <div class="confirmation">
-                        <p><strong>Are you sure you want to opt out?</strong></p>
-                        <div class="confirmation__row">
-                            <button type="button" class="btn btn--danger" id="confirm">Yes</button>
-                            <button type="button" class="btn btn--link" id="cancel">Whoops! Wrong Button</button>
-                        </div>
-                    </div>
                 <% } %>
 
                 <h2>Tools</h2>
@@ -64,6 +57,16 @@
                 <% } %>
                 <button class="btn btn--primary" type="submit">Submit</button>
             </form>
+            <div id="cofirmation-dialog">
+                <div class="confirmation">
+                    <p><strong>Are you sure you want to opt out?</strong></p>
+                    <div class="confirmation__row">
+                        <button type="button" class="btn btn--danger" id="confirm">Yes</button>
+                        <button type="button" class="btn btn--link" id="cancel">Whoops! Wrong Button</button>
+                    </div>
+                </div>
+                <div class="confirmation__overlay"></div>
+            </div>
         </main>
         <script>
           (() => {

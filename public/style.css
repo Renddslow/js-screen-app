@@ -225,3 +225,34 @@ label {
   font-family: 'SFMono-Medium', 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo,
     Consolas, Courier, monospace;
 }
+
+.confirmation {
+  display: block;
+  position: fixed;
+  background: #fff;
+  box-shadow: 0 0 120px -1px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  padding: 24px;
+  border-bottom-left-radius: 4px;
+  top: 0;
+  z-index: 3000;
+  width: 350px;
+  left: calc(50% - 175px);
+  border-bottom-right-radius: 4px;
+}
+
+.confirmation__overlay {
+  content: '';
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 10, 0.4);
+}
+
+header.dialog-open,
+form.dialog-open {
+  filter: blur(4px);
+}
