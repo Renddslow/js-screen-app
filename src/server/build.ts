@@ -13,6 +13,7 @@ const render = promisify(ejs.renderFile);
 
 interface Survey {
   data: {
+    id?: string;
     type: 'survey';
     attributes: {
       email: string;
@@ -32,6 +33,20 @@ const QUESTIONS = [
   { id: 3, label: 'Used it at work' },
 ];
 
+const SNARES = ['Abyssal', 'Colossum.js', 'Reflexive Design', 'Alseta', 'Neutron 2'];
+
+const getSnare = () => {
+  const idx = Math.floor(Math.random() * SNARES.length);
+  return SNARES[idx];
+};
+
+const addSnare = (src, snare) => {
+  const arr = src.slice();
+  const idx = Math.floor(Math.random() * src.length);
+  arr.splice(idx, 0, snare);
+  return arr;
+};
+
 export default async (req: Record<string, any>, res: ServerResponse) => {
   const { data } = <Survey>req.body;
 
@@ -40,7 +55,7 @@ export default async (req: Record<string, any>, res: ServerResponse) => {
 
   const doc = await render(path.join(__dirname, '..', 'src/templates', 'survey.ejs'), {
     questions: QUESTIONS,
-    tools: data.attributes.tools,
+    tools: addSnare(data.attributes.tools, getSnare()),
     company: data.attributes.company,
     longForms: data.attributes.questions.map((q) => ({ id: alder(q), question: snark(q) })) || [],
     preamble: data.attributes.preamble ? snark(data.attributes.preamble) : '',
@@ -52,6 +67,19 @@ export default async (req: Record<string, any>, res: ServerResponse) => {
 
   // TODO: write directly to GitHub
   await write(path.join(__dirname, '..', 'public', `${id}.html`), prettified);
+  await write(
+    path.join(__dirname, '..', 'public', `${id}.json`),
+    JSON.stringify(
+      {
+        data: {
+          ...data,
+          id: data.id || id,
+        },
+      },
+      null,
+      2,
+    ),
+  );
 
   return res.json({
     data: {
