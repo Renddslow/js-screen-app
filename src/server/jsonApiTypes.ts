@@ -10,7 +10,7 @@ export interface APIError {
 
 export interface Response {
   data?: {
-    id: string;
+    id?: string;
     type: string;
     attributes?: Record<string, any>;
   };
@@ -19,5 +19,5 @@ export interface Response {
 
 export interface ServerResponse {
   HttpServerResponse;
-  json: (value: Response) => void;
+  json: (value: Response, status?: number) => void;
 }

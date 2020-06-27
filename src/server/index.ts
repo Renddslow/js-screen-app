@@ -8,9 +8,9 @@ import { Response } from './jsonApiTypes';
 const PORT = process.env.PORT || 8080;
 
 const json = (req, res, next) => {
-  res.json = (value: Response) => {
+  res.json = (value: Response, status: number = 200) => {
     res.setHeader('Content-Type', 'application/json');
-    res.statusCode = 200;
+    res.statusCode = status;
     return res.end(JSON.stringify(value));
   };
   next();

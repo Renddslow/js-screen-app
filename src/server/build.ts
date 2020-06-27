@@ -7,6 +7,8 @@ import snark from 'snarkdown';
 
 import alder from './alder';
 import { ServerResponse } from './jsonApiTypes';
+import validate from './validate';
+import makeID from './makeID';
 
 const write = promisify(fs.writeFile);
 const render = promisify(ejs.renderFile);
@@ -23,6 +25,9 @@ interface Survey {
       preamble: string;
       expectations: string;
     };
+  };
+  meta?: {
+    creationTime: string;
   };
 }
 
@@ -48,10 +53,15 @@ const addSnare = (src, snare) => {
 };
 
 export default async (req: Record<string, any>, res: ServerResponse) => {
-  const { data } = <Survey>req.body;
+  const { data, meta } = <Survey>req.body;
 
-  const id = alder(data.attributes.email).toString(10);
-  // TODO: check if ID already exists; bail if it does
+  const errors = validate(data, 'survey', ['email', 'company', 'tools'], req.method);
+
+  if (errors.length) {
+    return res.json({ errors }, 400);
+  }
+
+  const id = makeID(req.method, data, meta);
 
   const doc = await render(path.join(__dirname, '..', 'src/templates', 'survey.ejs'), {
     questions: QUESTIONS,
