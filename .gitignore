@@ -2,3 +2,4 @@
 yarn-error.log*
 /functions
 /dist
+.env

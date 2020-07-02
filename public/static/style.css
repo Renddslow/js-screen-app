@@ -257,6 +257,6 @@ form.dialog-open {
   filter: blur(4px);
 }
 
-#cofirmation-dialog {
+#confirmation-dialog {
   display: none;
 }

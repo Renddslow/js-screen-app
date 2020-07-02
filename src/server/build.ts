@@ -5,10 +5,13 @@ import { promisify } from 'util';
 import prettier from 'prettier';
 import snark from 'snarkdown';
 
-import alder from './alder';
-import { ServerResponse } from './jsonApiTypes';
-import validate from './validate';
-import makeID from './makeID';
+import alder from './utils/alder';
+import { ServerResponse } from './utils/jsonApiTypes';
+import validate from './utils/validate';
+import makeID from './utils/makeID';
+import getFile from './utils/getFile';
+import createFile from './utils/createFile';
+import contentToJSON from './utils/contentToJSON';
 
 const write = promisify(fs.writeFile);
 const render = promisify(ejs.renderFile);
@@ -54,6 +57,9 @@ const addSnare = (src, snare) => {
 
 export default async (req: Record<string, any>, res: ServerResponse) => {
   const { data, meta } = <Survey>req.body;
+  const ownedSurveys = <Array<any>>(
+    contentToJSON((await getFile(`${alder(data.attributes.email)}.json`)).content)
+  );
 
   const errors = validate(data, 'survey', ['email', 'company', 'tools'], req.method);
 
@@ -76,20 +82,24 @@ export default async (req: Record<string, any>, res: ServerResponse) => {
   const prettified = prettier.format(doc, { parser: 'html' });
 
   // TODO: write directly to GitHub
-  await write(path.join(__dirname, '..', 'public', `${id}.html`), prettified);
-  await write(
-    path.join(__dirname, '..', 'public', `${id}.json`),
-    JSON.stringify(
-      {
-        data: {
-          ...data,
-          id: data.id || id,
+  const ownedSurveysJson = JSON.stringify(ownedSurveys ? [...ownedSurveys, id] : [id]);
+  await Promise.all([
+    createFile(`${alder(data.attributes.email)}.json`, ownedSurveysJson),
+    createFile(
+      `${id}/settings.json`,
+      JSON.stringify(
+        {
+          data: {
+            ...data,
+            id: data.id || id,
+          },
         },
-      },
-      null,
-      2,
+        null,
+        2,
+      ),
     ),
-  );
+  ]);
+  // await createFile(`public/${id}.html`, prettified, false);
 
   return res.json({
     data: {

@@ -7,7 +7,7 @@ export default (
 ): string => {
   if (method === 'PUT' && data.id) return data.id;
 
-  const date = (meta && meta.creationTime) || new Date().toISOString();
+  const date = data.attributes.created || new Date().toISOString();
   const value = `${data.attributes.email}:${data.attributes.company}:${date}`;
   return alder(value).toString(10);
 };
